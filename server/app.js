@@ -1,11 +1,16 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
+var treats = require('./routes/treats');
 var port = process.env.PORT || 3000;
 
 /*** Build out a module to manage our treats requests. ***/
 
+app.use(bodyParser.urlencoded({extended: true})); // this creates req.body
+app.use(bodyParser.json());
 
+app.use('/treats', treats);
 
 
 // Get static files
